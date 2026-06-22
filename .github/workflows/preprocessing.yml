@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+
 jobs:
   preprocess-data:
     runs-on: ubuntu-latest
@@ -34,7 +37,7 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add preprocessing/namadataset_preprocessing/cleaned_data.csv
           if ! git diff --staged --quiet; then
-            git commit -m "fix: clear syntax formatting in workflow pipeline"
+            git commit -m "fix: grant write permissions to workflow token"
             git push origin main
           else
             echo "No changes to commit."
